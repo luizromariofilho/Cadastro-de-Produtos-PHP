@@ -1,7 +1,22 @@
-<?php
-  $id = 0;
-?>
 <div class="container">
+  <?php
+    $id = 0;
+
+    if(isset($_GET['status'])){
+      $status = $_GET['status'];
+      switch ($status) {
+        case '0':
+          echo "<h3 class='alert alert-danger' role='alert'>Ocorreu um erro!</h3>";
+          break;
+        case '1':
+          echo "<h3 class='alert alert-success' role='alert'>Produto salvo com sucesso!</h3>";
+          break;
+        default:
+          echo "<h3 class='alert alert-danger' role='alert'>Ocorreu um erro!</h3>";
+          break;
+      }
+    }
+  ?>
   <div class="row">
     <div class="col-md-2">
       <!--Sidebar content-->
