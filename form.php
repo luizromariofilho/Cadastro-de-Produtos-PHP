@@ -1,11 +1,16 @@
 <?php 
-	require_once("cabecalho.php");
+	/* solução temporária para resolver erro do título */
 	if(isset($_GET["id"])){ // testa se o id do produto foi passado via url
 		$title = "Editar";
+	}else{
+		$title = "Novo";
+	}
+	/* importa o cabacelhaço com o banco de dados inicializado */
+	require_once("cabecalho.php");
+	if(isset($_GET["id"])){ // testa se o id do produto foi passado via url
 		$id = $_GET["id"];
 		$produto = $bd->get($id);
 	} else{
-		$title = "Novo";
 		$id = count($bd->getAll()) + 1;
 		$produto = new Produto();
 		$produto->id = $id;
