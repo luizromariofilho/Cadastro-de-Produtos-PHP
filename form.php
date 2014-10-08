@@ -9,7 +9,7 @@
 ?>
 <h1>Cadastro de Produto</h1>
 <div class="col-md-6">
-	<form class="form">
+	<form class="form" action="salvar-produto.php" method="post">
 		<input type="hidden" value="<?=$id; ?>"> 
 		<div class="form-group">
 			<label>Nome</label>
@@ -27,10 +27,9 @@
 			<label>Descrição</label>
 			<textarea name="descricao" class="form-control"></textarea>
 		</div>
+		<input type="reset" class="btn btn-danger" value="Cancelar" />
+		<input type="submit" class="btn btn-primary" value="Salvar" />
 	</form>
-	<br />
-	<br />
-	<br />
-	<a href="index.php" class="btn btn-success">Voltar</a>
+
 </div>
 <?php require_once("rodape.php") ?>
