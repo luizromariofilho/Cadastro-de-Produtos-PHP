@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
   require_once('BD.class.php');
   require_once('Produto.class.php');
@@ -26,8 +25,6 @@
       echo "$value->nome<br />";
   }
 ?>
-=======
->>>>>>> origin/master
 <div class="container">
   <?php
     $id = 0;
