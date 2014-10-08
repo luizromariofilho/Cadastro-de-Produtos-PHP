@@ -19,5 +19,14 @@ class BD
 	function getAll(){
 		return $this->produtos;
 	}
+
+	function get($id){
+		foreach ($this->produtos as $i => $value) {
+			if($value->id == $id){
+				return $value;
+			}
+		}
+		return null;
+	}
 }
 ?>
