@@ -1,12 +1,14 @@
 <?php
-  
 
-  $produtos = $bd->getAll();  
+  if(isset($_SESSION['bd'])){
+    $bd = $_SESSION['bd'];
+  } else{
+    $bd = new BD();
+  }
+  $produtos = $bd->getAll();
 ?>
 <div class="container">
   <?php
-    $id = 0;
-
     if(isset($_GET['status'])){
       $status = $_GET['status'];
       switch ($status) {
