@@ -1,10 +1,4 @@
 <?php
-
-  if(isset($_SESSION['bd'])){
-    $bd = $_SESSION['bd'];
-  } else{
-    $bd = new BD();
-  }
   $produtos = $bd->getAll();
 ?>
 <div class="container">
@@ -26,21 +20,7 @@
   ?>
   <div class="row">
     <div class="col-md-2">
-      <!--Sidebar content-->
-      <form class="form">
-        <div class="form-group">
-          <label>Pesquisar</label>
-          <input type="text" name="pesquisar" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label>Ordenar por</label>
-          <select class="form-control">
-            <option value="nome">Nome</option>
-            <option value="preco">Preço</option>
-          </select>
-        </div>
-      </form>
-      <a href="form.php" class="btn btn-primary">Novo</a>
+      <a href="form.php" class="btn btn-primary btn-block">Novo</a>
     </div>
     <div class="col-md-10">
       <!--Body content-->
@@ -52,7 +32,7 @@
                   <div class='col-md-10'>
                     <a href='form.php?id=$value->id' class='col-md-4'><img class='img-thumbnail' src='images/image.jpg'></a>
                     <a href='form.php?id=$value->id' class='col-md-8'>$value->nome</a>
-                    <p>$value->descricao</p>
+                    <p class='col-md-8'>$value->descricao</p>
                   </div>
                   <div class='clearfix'></div>
                   <hr />
