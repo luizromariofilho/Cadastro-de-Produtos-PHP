@@ -6,7 +6,10 @@ Projeto de Desenvolvimento Web - Talita
 
 <h3>Sql inicial</h3>
 <code>
-create database produtos_php;
+<h4>BD</h4>
+CREATE DATABASE produtos_php;
+<br />
+<h4>TABLE</h4>
 CREATE TABLE `produtos_php`.`produto` (
   `id` INT NOT NULL,
   `nome` VARCHAR(45) NULL,
