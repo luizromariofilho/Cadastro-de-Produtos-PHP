@@ -1,52 +1,67 @@
 <?php
 	require_once("bootstrap.php");
 
+
+
+
 	$nome = $_POST["nome"];
-	$id = $_POST["id"];
 	$preco = $_POST["preco"];
 	$descricao = $_POST["descricao"];
-	print_r($_FILES);
 	$image = $_FILES['image'];
 
-	$produto = new Produto();
-	$produto->id = $id;
-	$produto->nome = $nome;
-	$produto->preco = $preco;
-	$produto->descricao = $descricao;
+	if(isset($_POST["id"])){
+		$id = $_POST["id"];
 
-	try {
-
-     	$arquivo_tmp = $image['tmp_name'];
-	    $nome = $image['name'];
-	    $produto->imagem = $nome;
-	    // Pega a extensao
-	    $extensao = strrchr($nome, '.');
-	 
-	    // Converte a extensao para mimusculo
-	    $extensao = strtolower($extensao);
- 
-	    // Somente imagens, .jpg;.jpeg;.gif;.png
-	    // Aqui eu enfilero as extesões permitidas e separo por ';'
-	    // Isso server apenas para eu poder pesquisar dentro desta String
-	    if(strstr('.jpg;.jpeg;.gif;.png', $extensao))
-	    {
-	        // Cria um nome único para esta imagem
-	        // Evita que duplique as imagens no servidor.
-	        $novoNome = md5(microtime()) . $extensao;
-	         
-	        // Concatena a pasta com o nome
-	        $destino = 'images/' . $novoNome; 
-	         
+		$produto = $bd->get($id);
+		$produto->nome = $nome;
+		$produto->preco = $preco;
+		$produto->descricao = $descricao;
+		try {
+			if(!isset($_FILES['image'])){
+				header('location: index.php?status=2');
+			}
+		    $image_nome = $image['name'];
+		    $produto->imagem = $image_nome;
+	        $destino = 'images/' . $image_nome; 
 	        // tenta mover o arquivo para o destino
-	        if( @move_uploaded_file( $arquivo_tmp, $destino  ))
-	        {
-        		$bd->inserir($produto);
-				header('location: index.php?status=1');
+	        if( @move_uploaded_file($image['tmp_name'], $destino  )) {
+	    		if($bd->atualizar($produto)){
+					header('location: index.php?status=1');
+	    		} else{
+					header('location: index.php?status=0');
+	    		}
 	        } else{
-				header('location: index.php?status=0');
+				header('location: index.php?status=2');
 	        }
-        }
-    } catch (Exception $e) {
-		header('location: index.php?status=0');
-    }
+	    } catch (Exception $e) {
+			header('location: index.php?status=0');
+	    }
+	} else{
+		$produto = new Produto();
+		$produto->nome = $nome;
+		$produto->preco = $preco;
+		$produto->descricao = $descricao;
+		try {
+			if(!isset($_FILES['image'])){
+				header('location: index.php?status=2');
+			}
+		    $image_nome = $image['name'];
+		    $produto->imagem = $image_nome;
+	        $destino = 'images/' . $image_nome; 
+	        $id = count($bd->getAll()) + 1;
+	        $produto->id = $id;
+	        // tenta mover o arquivo para o destino
+	        if( @move_uploaded_file($image['tmp_name'], $destino  )) {
+	    		if($bd->inserir($produto)){
+					header('location: index.php?status=1');
+	    		} else{
+					header('location: index.php?status=0');
+	    		}
+	        } else{
+				header('location: index.php?status=2');
+	        }
+	    } catch (Exception $e) {
+			header('location: index.php?status=0');
+	    }
+	}
 ?>

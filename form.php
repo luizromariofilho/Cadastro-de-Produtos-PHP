@@ -7,9 +7,7 @@
 		$produto = $bd->get($id);
 	}else{
 		$title = "Novo";
-		$id = count($bd->getAll()) + 1;
 		$produto = new Produto();
-		$produto->id = $id;
 	}
 	require_once("cabecalho.php");
 ?>
@@ -22,7 +20,11 @@
 <h1>Cadastro de Produto</h1>
 <div class="col-md-6">
 	<form class="form" action="salvar-produto.php" method="post" enctype="multipart/form-data">
-		<input name="id" type="hidden" value="<?=$produto->id; ?>"> 
+		<?php
+			if(isset($_GET["id"])){ // testa se o id do produto foi passado via url
+				echo "<input name='id' type='hidden' value='$produto->id;'>";
+			}
+		?>
 		<div class="form-group">
 			<label>Nome</label>
 			<input type="text" name="nome" class="form-control" value="<?= $produto->nome;?>" />

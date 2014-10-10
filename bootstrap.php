@@ -12,12 +12,14 @@
 	$produto->nome = "teste1";
 	$produto->preco = "200";
 	$produto->descricao = "teste 1";
+	$produto->imagem = "image.jpg";
 
 	$produto2 = new Produto();
 	$produto2->id = 1;
 	$produto2->nome = "teste2";
 	$produto2->preco = "100";
 	$produto2->descricao = "teste 2";
+	$produto2->imagem = "download.jpg";
 
 	$bd->inserir($produto);
 	$bd->inserir($produto2);
