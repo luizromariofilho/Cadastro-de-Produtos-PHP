@@ -2,7 +2,7 @@
 		<div class="footer">
   			<div class="container">
 	        	<p class="text-muted">
-					<a href="https://github.com/tatacbl" target="_blank">&copy Talita Carla</a>
+					<a href="" target="_blank">&copy Talita Carla, Maone Barbosa, Igor Vieira</a>
 	        	</p>
 	      	</div>
 	    </div><!-- end footer -->

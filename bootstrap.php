@@ -7,7 +7,7 @@
 	/* inicializa o "banco de dados" */
 	$bd =  new BD();		
 
-	$produto = new Produto();
+	$produto = new Produto(); //cria novos produtos como teste para que não se inicie sem produto nenhum
 	$produto->id = 0;
 	$produto->nome = "teste1";
 	$produto->preco = "200";

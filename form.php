@@ -1,20 +1,20 @@
 <?php 
-	require_once("bootstrap.php");
+	require_once("bootstrap.php"); //importa o arquivo bootstrap
 
-	if(isset($_GET["id"])){ // testa se o id do produto foi passado via url
-		$title = "Editar";
-		$id = $_GET["id"];
-		$produto = $bd->get($id);
+	if(isset($_GET["id"])){ // testa se o id do produto foi passado via url(GET)
+		$title = "Editar"; //titulo da pagina - Editar pois o id veio da url 
+		$id = $_GET["id"]; //recebe o id passado via url
+		$produto = $bd->get($id); //recebe o produto referente ao id 
 	}else{
-		$title = "Novo";
-		$produto = new Produto();
+		$title = "Novo"; //caso o id não tenha sido recebido por url
+		$produto = new Produto(); //cria um novo produto
 	}
 	require_once("cabecalho.php");
 ?>
 
 <script type="text/javascript">
 	function voltar(){
-		window.history.back();
+		window.history.back(); //funcao para voltar a pagina anterior
 	}
 </script>
 <h1>Cadastro de Produto</h1>
@@ -22,10 +22,10 @@
 	<form class="form" action="salvar-produto.php" method="post" enctype="multipart/form-data">
 		<?php
 			if(isset($_GET["id"])){ // testa se o id do produto foi passado via url
-				echo "<input name='id' type='hidden' value='$produto->id;'>";
-			}
+				echo "<input name='id' type='hidden' value='$produto->id;'>"; 
+			} //caso não tenha sido recebido por url pega os valores preenchidos no formulário 
 		?>
-		<div class="form-group">
+		<div class="form-group"> 
 			<label>Nome</label>
 			<input type="text" name="nome" class="form-control" value="<?= $produto->nome;?>" />
 		</div>
@@ -53,4 +53,4 @@
 	</form>
 
 </div>
-<?php require_once("rodape.php") ?>
+<?php require_once("rodape.php") ?> 
